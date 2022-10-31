@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.demo.Controlador;
 
 import com.example.demo.Servicio.CategoryService;
@@ -21,39 +17,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 @RequestMapping("/api/Category")
 @CrossOrigin(origins = "*")
 
 public class CategoryController {
+
     @Autowired
     private CategoryService categoryService;
-    
+
     @GetMapping("/all")
-    public List<Category> getAll(){
+    public List<Category> getAll() {
         return categoryService.getAll();
     }
-    
+
     @GetMapping("/{id}")
-    public Optional<Category> getCategory(@PathVariable("id") int id){
+    public Optional<Category> getCategory(@PathVariable("id") int id) {
         return categoryService.getCategory(id);
-    } 
-    
+    }
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category save (@RequestBody Category category){
+    public Category save(@RequestBody Category category) {
         return categoryService.save(category);
     }
-  @PutMapping("/update")
+
+    @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Category update(@RequestBody Category category) {
         return categoryService.update(category);
     }
-  @DeleteMapping("/{id}")
+
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int gamaId){
+    public boolean delete(@PathVariable("id") int gamaId) {
         return categoryService.deleteCategory(gamaId);
     }
 

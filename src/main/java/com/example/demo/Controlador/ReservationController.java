@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.demo.Controlador;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,57 +19,56 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-/**
- *
- * @author USUARIO
- */
-
 @RestController
 @RequestMapping("/api/Reservation")
 @CrossOrigin(origins = "*")
 
 public class ReservationController {
-        @Autowired
+
+    @Autowired
     private ReservationService reservationService;
-    
+
     @GetMapping("/all")
-    public List<Reservation> getAll(){
+    public List<Reservation> getAll() {
         return reservationService.getAll();
     }
-    
+
     @GetMapping("/{id}")
-    public Optional<Reservation> getReservation(@PathVariable("id") int id){
+    public Optional<Reservation> getReservation(@PathVariable("id") int id) {
         return reservationService.getReservation(id);
-    } 
-    
+    }
+
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation save (@RequestBody Reservation reservation){
+    public Reservation save(@RequestBody Reservation reservation) {
         return reservationService.save(reservation);
     }
+
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation update(@RequestBody Reservation reservation) {
         return reservationService.update(reservation);
     }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int reservationId){
+    public boolean delete(@PathVariable("id") int reservationId) {
         return reservationService.deleteReservation(reservationId);
     }
+
     /////RETO5////
     @GetMapping("/report-clients")
-    public List<CountClient> getReservationsReportClient(){
+    public List<CountClient> getReservationsReportClient() {
         return reservationService.getTopClients();
     }
-    
+
     @GetMapping("/report-dates/{dateOne}/{dateTwo}")
-    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
-        return reservationService.informePeriodoTiempoReservas(dateOne,dateTwo);
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne, @PathVariable("dateTwo") String dateTwo) {
+        return reservationService.informePeriodoTiempoReservas(dateOne, dateTwo);
     }
-    
-     @GetMapping("/report-status")
-    public Status getReservationsStatusReport(){
+
+    @GetMapping("/report-status")
+    public Status getReservationsStatusReport() {
         return reservationService.getReservationStatusReport();
     }
 }

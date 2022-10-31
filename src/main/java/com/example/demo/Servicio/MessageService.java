@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.demo.Servicio;
 
 import com.example.demo.Repositorio.MessageRepository;
@@ -10,58 +6,57 @@ import org.springframework.stereotype.Service;
 import com.example.demo.Modelo.Message;
 import java.util.List;
 import java.util.Optional;
-/**
- *
- * @author USUARIO
- */
 
 @Service
 
 public class MessageService {
+
     @Autowired
     private MessageRepository messageRepository;
-    
-    public List<Message> getAll(){
+
+    public List<Message> getAll() {
         return messageRepository.getAll();
     }
-    
-    public Optional<Message> getMessage(int id){
+
+    public Optional<Message> getMessage(int id) {
         return messageRepository.getMessage(id);
     }
-    
-    public Message save (Message message){
-        if (message.getIdMessage() == null){
+
+    public Message save(Message message) {
+        if (message.getIdMessage() == null) {
             return messageRepository.save(message);
         } else {
             Optional<Message> message1 = messageRepository.getMessage(message.getIdMessage());
-            if(message1.isEmpty()){
+            if (message1.isEmpty()) {
                 return messageRepository.save(message);
             } else {
                 return message;
             }
         }
     }
-    public Message update(Message message){
-        if(message.getIdMessage()!=null){
-            Optional<Message> e= messageRepository.getMessage(message.getIdMessage());
-            if(!e.isEmpty()){
-                if(message.getMessageText()!=null){
+
+    public Message update(Message message) {
+        if (message.getIdMessage() != null) {
+            Optional<Message> e = messageRepository.getMessage(message.getIdMessage());
+            if (!e.isEmpty()) {
+                if (message.getMessageText() != null) {
                     e.get().setMessageText(message.getMessageText());
                 }
                 messageRepository.save(e.get());
                 return e.get();
-            }else{
+            } else {
                 return message;
             }
-        }else{
+        } else {
             return message;
         }
     }
-    public boolean deleteMessage(int id){
+
+    public boolean deleteMessage(int id) {
         Boolean d = getMessage(id).map(message -> {
             messageRepository.delete(message);
             return true;
         }).orElse(false);
-        return d;  
+        return d;
     }
 }
