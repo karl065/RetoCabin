@@ -32,7 +32,7 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Category> getCategory(@PathVariable("id") int id) {
+    public Optional<Category> getCategory(@PathVariable int id) {
         return categoryService.getCategory(id);
     }
 

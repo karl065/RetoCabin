@@ -34,7 +34,7 @@ public class ReservationController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Reservation> getReservation(@PathVariable("id") int id) {
+    public Optional<Reservation> getReservation(@PathVariable int id) {
         return reservationService.getReservation(id);
     }
 
@@ -63,7 +63,7 @@ public class ReservationController {
     }
 
     @GetMapping("/report-dates/{dateOne}/{dateTwo}")
-    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne, @PathVariable("dateTwo") String dateTwo) {
+    public List<Reservation> getReservationsReportDates(@PathVariable String dateOne, @PathVariable String dateTwo) {
         return reservationService.informePeriodoTiempoReservas(dateOne, dateTwo);
     }
 

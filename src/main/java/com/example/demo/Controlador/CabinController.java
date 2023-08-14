@@ -33,7 +33,7 @@ public class CabinController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Cabin> getCabin(@PathVariable("id") int id) {
+    public Optional<Cabin> getCabin(@PathVariable int id) {
         return cabinService.getCabin(id);
     }
 

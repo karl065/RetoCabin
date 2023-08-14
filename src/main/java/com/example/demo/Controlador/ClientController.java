@@ -32,7 +32,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Client> getClient(@PathVariable("id") int id) {
+    public Optional<Client> getClient(@PathVariable int id) {
         return clientService.getClient(id);
     }
 
